@@ -41,6 +41,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFdrAIFmU9Jz2neGOj7cuxwaiqm+DPsFjXrYFD4yw1Zb
         script: |
             ls
