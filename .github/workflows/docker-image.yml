@@ -20,9 +20,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build and package Java app
-      run: |
-        mvn clean package
-        cp target/my-app-1.0.jar target/app.jar
+      run:  mvn clean package
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
