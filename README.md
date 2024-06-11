@@ -1,6 +1,5 @@
 # Spring Boot Hello World
 **A simple Spring Boot 2.x app to send hello world message to a user**
-123
 ## How to Run Application
 
 **Start the application using any of the commands mentioned below**
