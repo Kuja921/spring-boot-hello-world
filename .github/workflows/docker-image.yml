@@ -12,4 +12,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
+<<<<<<< HEAD
       run: docker build -t hw5 . 
+=======
+      run: docker build -t hw5 . 
+>>>>>>> 7b4a9d6669d5d31d387443344e2bb28abe286435
