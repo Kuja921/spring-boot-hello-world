@@ -35,12 +35,12 @@ jobs:
       with:
         push: true
         tags: kuja921/hw1:latest
-    - name: SSH to remote server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        #password: ${{ secrets.PASSWORD }}
-        key: ${{ secrets.PRIVATE_KEY }}
-        script: |
-            ls
+        - name: Set up SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+  
+      - name: Deploy to server
+        run: |
+          ls
