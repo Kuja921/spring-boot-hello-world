@@ -41,6 +41,10 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+    - name: Set env
+      run: |
+        echo "GITHUB_ACTION_PATH=" >> $GITHUB_ENV
+    
     - name: Deploy to server
       run: |
         docker ps
@@ -48,4 +52,4 @@ jobs:
         docker rm kuja921hw1 || true
         docker pull kuja921/hw1:latest
         docker run -d -p 8080:8080 --name kuja921hw1 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v kuja921test1v2_data:/data -v /etc/letsencrypt/live/kuja-portainer.freemyip.com:/certs/live/kuja-portainer.freemyip.com:ro -v /etc/letsencrypt/archive/kuja-portainer.freemyip.com:/certs/archive/kuja-portainer.freemyip.com:ro kuja921/hw1 --sslcert /certs/live/kuja-portainer.freemyip.com/fullchain.pem --sslkey /certs/live/kuja-portainer.freemyip.com/privkey.pem
-
+      
