@@ -21,6 +21,28 @@ jobs:
         cache: maven
     - name: Build and package Java app
       run:  mvn clean package
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.run_number }}
+        body: |
+          This is a release of my Spring Boot application.
+          The jar file is attached to this release.
+        draft: false
+        prerelease: false
+    - name: Upload jar to release
+      uses: actions/upload-release-asset@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: target/*.jar
+        asset_name: my-app.jar
+        asset_content_type: application/java-archive
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
@@ -44,7 +66,7 @@ jobs:
     - name: Set env
       run: |
         echo "GITHUB_ACTION_PATH=" >> $GITHUB_ENV
-    
+
     - name: Deploy to server
       run: |
         docker ps
@@ -52,4 +74,3 @@ jobs:
         docker rm kuja921hw1 || true
         docker pull kuja921/hw1:latest
         docker run -d -p 8080:8080 --name kuja921hw1 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v kuja921test1v2_data:/data -v /etc/letsencrypt/live/kuja-portainer.freemyip.com:/certs/live/kuja-portainer.freemyip.com:ro -v /etc/letsencrypt/archive/kuja-portainer.freemyip.com:/certs/archive/kuja-portainer.freemyip.com:ro kuja921/hw1 --sslcert /certs/live/kuja-portainer.freemyip.com/fullchain.pem --sslkey /certs/live/kuja-portainer.freemyip.com/privkey.pem
-      
