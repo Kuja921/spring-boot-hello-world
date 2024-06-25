@@ -43,7 +43,7 @@ jobs:
     - name: Deploy to server
       run: |
         docker ps
-        docker stop kuja921hw1 || true
-        docker rm kuja921hw1 || true
+        docker stop 123hw1 || true
+        docker rm 123hw1 || true
         docker pull kuja921/hw1:latest
-        docker run -d -p 8080:8080 --name kuja921hw1 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v kuja921test1v2_data:/data -v /etc/letsencrypt/live/kuja-portainer.freemyip.com:/certs/live/kuja-portainer.freemyip.com:ro -v /etc/letsencrypt/archive/kuja-portainer.freemyip.com:/certs/archive/kuja-portainer.freemyip.com:ro kuja921/hw1:latest --sslcert /certs/live/kuja-portainer.freemyip.com/fullchain.pem --sslkey /certs/live/kuja-portainer.freemyip.com/privkey.pem
+        docker run -d -p 8080:8080 --name 1231hw1 --restart always -v /var/run/docker.sock:/var/run/docker.sock -v 123test1v2_data:/data -v /etc/letsencrypt/live/kuja-portainer.freemyip.com:/certs/live/kuja-portainer.freemyip.com:ro -v /etc/letsencrypt/archive/kuja-portainer.freemyip.com:/certs/archive/kuja-portainer.freemyip.com:ro kuja921/hw1:latest --sslcert /certs/live/kuja-portainer.freemyip.com/fullchain.pem --sslkey /certs/live/kuja-portainer.freemyip.com/privkey.pem
