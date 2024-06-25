@@ -42,5 +42,6 @@ jobs:
 
     - name: Deploy to server
       run: |
-        hostname
-       
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          hostname
+        EOF
